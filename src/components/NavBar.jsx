@@ -27,6 +27,12 @@ const StyledNavLink = styled(NavLink)`
   border-radius: 0.5rem;
   color: ${colors.secondary};
 
+  &:hover {
+    background-color: ${colors.secondary};
+    text-decoration: none;
+    color: ${colors.primary};
+  }
+
   &.active {
     background-color: ${colors.secondary};
     color: ${colors.primary};
