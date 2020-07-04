@@ -26,6 +26,7 @@ const StyledNavLink = styled(NavLink)`
   border: 0.1rem solid ${colors.secondary};
   border-radius: 0.5rem;
   color: ${colors.secondary};
+  transition: all 0.3s ease-out;
 
   &:hover {
     background-color: ${colors.secondary};

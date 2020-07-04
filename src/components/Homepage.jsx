@@ -46,6 +46,8 @@ const StyledButton = styled(Link)`
   font-size: 1.7rem;
   align-self: center;
   margin-top: 2rem;
+  transition: all 0.3s ease-out;
+
 
   &:hover {
     background-color: ${colors.secondary};
@@ -61,7 +63,7 @@ const StyledCol = styled(Col)`
 const StyledImage = styled.img`
   margin: 1rem;
   width: 60%;
-  transition: all 0.1s ease-out;
+  transition: all 0.3s ease-out;
 
   &:hover {
       margin: 0rem;
