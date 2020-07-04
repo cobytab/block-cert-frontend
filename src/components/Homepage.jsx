@@ -72,6 +72,7 @@ const StyledImage = styled.img`
 const StyledDiv = styled.div`
   background-color: ${colors.light};
   margin: 0px -15px;
+  margin-bottom: 5rem;
 `;
 
 const SectionTitle = styled.h2`
