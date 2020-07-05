@@ -8,7 +8,7 @@ export const colors = {
   secondary: "#6a7edf",
   tertiary: "#3c3f78",
   alternate: "#f27389",
-  dark: "#111"
+  dark: "#111",
 };
 
 export const StyledContainer = styled(Container)`
@@ -56,7 +56,7 @@ export const StyledInput = styled.input`
   outline: 0;
   background-color: ${colors.light};
   border-radius: 1rem;
-  min-width: 100%;
+  width: 100%;
   padding-left: 3rem;
   padding-right: 3rem;
   height: 3.5rem;

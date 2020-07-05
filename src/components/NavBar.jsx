@@ -48,10 +48,19 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const StyledTitle = styled.h3`
-  color: ${colors.tertiary};
-  letter-spacing: 0.3rem;
-  font-weight: bold;
+const StyledTitle = styled(NavbarBrand)`
+  outline: 0;
+
+  &:active {
+    outline: 0;
+  }
+  h3 {
+    color: ${colors.tertiary};
+    font-weight: bold;
+    font-weight: bold;
+    font-family: cursive;
+    letter-spacing: 0.5rem;
+  }
 `;
 
 const StyledUser = styled(FaUserTie)`
@@ -79,7 +88,7 @@ const StyledLogout = styled(DropdownItem)`
   }
 `;
 
-const NavBar = ({ authenticated, logoutUser, session }) => {
+const NavBar = ({ authenticated, logoutUser, user }) => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
 
@@ -91,9 +100,11 @@ const NavBar = ({ authenticated, logoutUser, session }) => {
     <div>
       <Navbar light expand="md">
         <Container>
-          <NavbarBrand href="/">
-            <StyledTitle>Block-Cert</StyledTitle>
-          </NavbarBrand>
+          {/* <NavbarBrand href="/"> */}
+          <StyledTitle href="/">
+            <h3>Block-Cert</h3>
+          </StyledTitle>
+          {/* </NavbarBrand> */}
           <NavbarToggler onClick={toggleNavbar} />
           <Collapse isOpen={!collapsed} navbar>
             {!authenticated && (
@@ -117,7 +128,7 @@ const NavBar = ({ authenticated, logoutUser, session }) => {
                     <StyledUser />
                   </StyledDropdownToggle>
                   <DropdownMenu right>
-                    <DropdownItem header>Fenty Fantasia</DropdownItem>
+                    <DropdownItem header>{user.email}</DropdownItem>
                     <DropdownItem divider />
                     <StyledLogout onClick={() => logoutUser(history)}>
                       <FiLogOut /> Log out
@@ -135,6 +146,7 @@ const NavBar = ({ authenticated, logoutUser, session }) => {
 
 const mapStateToProps = ({ user, session }) => ({
   authenticated: session.authenticated,
+  user: session.user,
 });
 
 export default connect(mapStateToProps, { logoutUser })(NavBar);
