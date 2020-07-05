@@ -13,8 +13,6 @@ import stage2 from "./../assets/stage2.png";
 import stage3 from "./../assets/stage3.png";
 import stage4 from "./../assets/stage4.png";
 
-import { Link } from "react-router-dom";
-
 const WelcomeImage = styled.div`
   background-image: url(${welcomeImg});
   height: calc(100vh - 85px);

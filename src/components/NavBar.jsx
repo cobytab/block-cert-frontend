@@ -21,11 +21,10 @@ import {
 } from "reactstrap";
 import { FaUserTie } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import { colors } from "./shared";
 
 // React router
-import { NavLink, Link } from "react-router-dom";
-
-import { colors } from "./shared";
+import { NavLink, useHistory } from "react-router-dom";
 
 const StyledNavLink = styled(NavLink)`
   margin-left: 1rem;
@@ -80,13 +79,14 @@ const StyledLogout = styled(DropdownItem)`
   }
 `;
 
-const NavBar = ({ authenticated, logoutUser }) => {
+const NavBar = ({ authenticated, logoutUser, session }) => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
+  const history = useHistory();
   return (
     <div>
       <Navbar light expand="md">
@@ -119,7 +119,7 @@ const NavBar = ({ authenticated, logoutUser }) => {
                   <DropdownMenu right>
                     <DropdownItem header>Fenty Fantasia</DropdownItem>
                     <DropdownItem divider />
-                    <StyledLogout onClick={logoutUser}>
+                    <StyledLogout onClick={() => logoutUser(history)}>
                       <FiLogOut /> Log out
                     </StyledLogout>
                   </DropdownMenu>
@@ -133,8 +133,8 @@ const NavBar = ({ authenticated, logoutUser }) => {
   );
 };
 
-const mapStateToProps = ({ user }) => ({
-  authenticated: user.authenticated,
+const mapStateToProps = ({ user, session }) => ({
+  authenticated: session.authenticated,
 });
 
 export default connect(mapStateToProps, { logoutUser })(NavBar);

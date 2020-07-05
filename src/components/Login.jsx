@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { useHistory } from "react-router-dom";
 // Reactstrap
 import { Row, Col } from "reactstrap";
 
@@ -21,12 +21,16 @@ import {
   StyledInput,
   Message,
 } from "./shared";
+import { connect } from "react-redux";
+import { loginUser } from "./../app/actions/userActions";
 
-const Login = () => {
+const Login = ({ loginUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     if (email === "" || password === "") {
@@ -35,7 +39,7 @@ const Login = () => {
       setMessage("Please enter a valid email");
     } else {
       // Go to server.
-      //   loginUser({ email: email.trim(), password: password.trim() });
+      loginUser({ email: email.trim(), password: password.trim() }, history);
     }
 
     e.preventDefault();
@@ -105,4 +109,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect(null, { loginUser })(Login);
