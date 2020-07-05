@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 // Reactstrap
-import { Row, Col } from "reactstrap";
+import { Row, Col, Spinner } from "reactstrap";
 
 // React icons
 import { FiUser } from "react-icons/fi";
 import { IoMdSchool } from "react-icons/io";
-import { TiBusinessCard, TiArrowDownOutline } from "react-icons/ti";
+import { TiBusinessCard } from "react-icons/ti";
 
 // Styled components
 import {
@@ -24,7 +24,7 @@ import {
   Message,
 } from "./shared";
 import { connect } from "react-redux";
-import { loginUser } from "./../app/actions/userActions";
+import { loginUser, verifyData } from "./../app/actions/userActions";
 
 import portalImg from "./../assets/portalfront.jpg";
 
@@ -46,7 +46,25 @@ export const StyledHead = styled.p`
   color: ${colors.secondary};
 `;
 
-const Dashboard = ({ loginUser }) => {
+export const StyledSpinner = styled(Spinner)`
+  margin-left: 1rem;
+`;
+
+export const StyledSubmitLoading = styled.button`
+  border-radius: 1rem;
+  height: 3.5rem;
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  width: 80%;
+  border: 0.1rem solid ${colors.secondary};
+  transition: all 0.3s ease-out;
+  background-color: ${colors.secondary};
+  text-decoration: none;
+  color: ${colors.primary};
+  opacity: 0.7;
+`;
+
+const Dashboard = ({ loginUser, verifyData, appLoading }) => {
   const [indexNo, setIndexNo] = useState("");
   const [institution, setInstitution] = useState("");
   const [fullName, setFullName] = useState("");
@@ -64,15 +82,14 @@ const Dashboard = ({ loginUser }) => {
     } else if (!validateFullName(institution)) {
       setMessage("Please enter a valid institution name!");
     } else {
-      // Go to server.
-      // verifyData(
-      //   {
-      //     indexNo: indexNo.trim(),
-      //     institution: institution.trim(),
-      //     fullName: fullName.trim(),
-      //   },
-      //   history
-      // );
+      verifyData(
+        {
+          indexNo: indexNo.trim(),
+          institution: institution.trim(),
+          fullName: fullName.trim(),
+        },
+        history
+      );
     }
 
     e.preventDefault();
@@ -143,9 +160,21 @@ const Dashboard = ({ loginUser }) => {
               </StyledInputField>
 
               {message && <Message>{message}</Message>}
-              <StyledSubmit type="submit" onClick={(e) => handleSubmit(e)}>
-                Verify
-              </StyledSubmit>
+              {!appLoading && (
+                <StyledSubmit type="submit" onClick={(e) => handleSubmit(e)}>
+                  Verify
+                </StyledSubmit>
+              )}
+
+              {appLoading && (
+                <StyledSubmitLoading disabled type="submit">
+                  Verifying...
+                  <StyledSpinner
+                    style={{ width: "1.6rem", height: "1.6rem" }}
+                    type="grow"
+                  />
+                </StyledSubmitLoading>
+              )}
             </form>
           </Welcome>
         </Col>
@@ -154,4 +183,8 @@ const Dashboard = ({ loginUser }) => {
   );
 };
 
-export default connect(null, { loginUser })(Dashboard);
+const mapStateToProps = ({ user }) => ({
+  appLoading: user.appLoading,
+});
+
+export default connect(mapStateToProps, { loginUser, verifyData })(Dashboard);

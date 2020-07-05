@@ -1,4 +1,4 @@
-import { LOG_OUT, LOG_IN } from "../types";
+import { VERIFY_DATA, SET_LOADING, SET_MESSAGE } from "../types";
 import { sessionService } from "redux-react-session";
 
 export const logoutUser = (history) => {
@@ -29,5 +29,29 @@ export const loginUser = (credentials, history) => {
       .catch((err) => {
         console.log(err);
       });
+  };
+};
+
+export const verifyData = (details) => (dispatch) => {
+  dispatch(setLoading(true));
+  dispatch({
+    type: VERIFY_DATA,
+    payload: details,
+  });
+  dispatch(setLoading(false));
+
+};
+
+export const setLoading = (status) => {
+  return {
+    type: SET_LOADING,
+    payload: status,
+  };
+};
+
+export const setMessage = (message) => {
+  return {
+    type: SET_MESSAGE,
+    payload: message,
   };
 };
