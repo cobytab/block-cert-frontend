@@ -5,7 +5,9 @@ import { useHistory } from "react-router-dom";
 import { Row, Col } from "reactstrap";
 
 // React icons
-import { FiUser, FiLock, FiLogIn, FiEye, FiEyeOff } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
+import { IoMdSchool } from "react-icons/io";
+import { TiBusinessCard, TiArrowDownOutline } from "react-icons/ti";
 
 // Styled components
 import {
@@ -13,6 +15,7 @@ import {
   Welcome,
   colors,
   StyledInputField,
+  StyledSelect,
   Label,
   StyledSubmit,
   StyledIcon,
@@ -109,7 +112,7 @@ const Dashboard = ({ loginUser }) => {
                   name="indexNo"
                 />
                 <StyledIcon postion="left">
-                  <FiUser />
+                  <TiBusinessCard />
                 </StyledIcon>
               </StyledInputField>
               <StyledInputField>
@@ -125,13 +128,17 @@ const Dashboard = ({ loginUser }) => {
               </StyledInputField>
               <StyledInputField>
                 <Label>Institution Name</Label>
-                <StyledInput
-                  onChange={(value) => setInstitution(value.target.value)}
-                  type="text"
+                <StyledSelect
                   name="institution"
-                />
+                  onChange={(value) => setInstitution(value.target.value)}
+                >
+                  <option></option>
+                  <option>University of Ghana</option>
+                  <option>University of Cape Coast</option>
+                </StyledSelect>
+
                 <StyledIcon postion="left">
-                  <FiUser />
+                  <IoMdSchool />
                 </StyledIcon>
               </StyledInputField>
 

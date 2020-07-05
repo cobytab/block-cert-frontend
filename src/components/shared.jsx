@@ -2,6 +2,8 @@ import { Container } from "reactstrap";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+import caret from "./../assets/caret.png";
+
 export const colors = {
   primary: "#fff",
   light: "#EDF2F7",
@@ -46,7 +48,7 @@ export const StyledButton = styled(Link)`
 // Input stuff
 
 export const StyledInputField = styled.div`
-  margin: 1rem auto;
+  margin: 1rem auto 2rem auto;
   position: relative;
   width: 80%;
 `;
@@ -60,7 +62,24 @@ export const StyledInput = styled.input`
   padding-left: 3rem;
   padding-right: 3rem;
   height: 3.5rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
+
+  &:focus {
+    border: 0.1rem solid ${colors.secondary};
+  }
+`;
+
+export const StyledSelect = styled.select`
+  border: 0;
+  outline: 0;
+  border-radius: 1rem;
+  width: 100%;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  height: 3.5rem;
+  font-size: 1rem;
+  appearance: none;
+  background: url(${caret}) 96% / 5% no-repeat ${colors.light};
 
   &:focus {
     border: 0.1rem solid ${colors.secondary};
@@ -68,7 +87,8 @@ export const StyledInput = styled.input`
 `;
 
 export const Label = styled.p`
-  font-size: 1.1rem;
+  font-size: 1rem;
+  margin-bottom: 0;
 `;
 
 export const StyledSubmit = styled.button`
@@ -91,7 +111,7 @@ export const StyledSubmit = styled.button`
 
 export const StyledIcon = styled.p`
   position: absolute;
-  top: 3.2rem;
+  top: 2.1rem;
   ${(props) => props.postion}: 0.5rem;
   font-size: 1.8rem;
 `;
