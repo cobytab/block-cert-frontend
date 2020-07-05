@@ -1,12 +1,12 @@
 import React from "react";
 
 // React strap
-import { Container, Row, Col, Button } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 import styled from "styled-components";
 
 // Custom imports
-import { colors } from "./shared";
+import { colors, StyledContainer, Welcome, StyledButton } from "./shared";
 import welcomeImg from "./../assets/welcomeImg.jpg";
 import stage1 from "./../assets/stage1.png";
 import stage2 from "./../assets/stage2.png";
@@ -15,45 +15,12 @@ import stage4 from "./../assets/stage4.png";
 
 import { Link } from "react-router-dom";
 
-const StyledContainer = styled(Container)`
-  background-color: ${colors.primary};
-  border-radius: 0.5rem;
-`;
-
-const Welcome = styled.p`
-  font-size: 2.3rem;
-  justify-content: center;
-  height: calc(100vh - 85px);
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-`;
-
 const WelcomeImage = styled.div`
   background-image: url(${welcomeImg});
   height: calc(100vh - 85px);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-`;
-
-const StyledButton = styled(Link)`
-  width: 16rem;
-  padding: 0.3rem;
-  border: 0.1rem solid ${colors.secondary};
-  border-radius: 0.5rem;
-  color: ${colors.secondary};
-  font-size: 1.7rem;
-  align-self: center;
-  margin-top: 2rem;
-  transition: all 0.3s ease-out;
-
-
-  &:hover {
-    background-color: ${colors.secondary};
-    text-decoration: none;
-    color: ${colors.primary};
-  }
 `;
 
 const StyledCol = styled(Col)`
@@ -66,8 +33,8 @@ const StyledImage = styled.img`
   transition: all 0.3s ease-out;
 
   &:hover {
-      margin: 0rem;
-      width: 65%;
+    margin: 0rem;
+    width: 65%;
   }
 `;
 
