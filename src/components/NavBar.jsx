@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 import styled from "styled-components";
+import { connect } from "react-redux";
 
-// Reactstrap
+// UI
 import {
   Container,
   Navbar,
@@ -11,12 +12,18 @@ import {
   Collapse,
   Nav,
   NavItem,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
+import { FaUserTie } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 
 // React router
 import { NavLink } from "react-router-dom";
 
-import { colors } from './shared';
+import { colors } from "./shared";
 
 const StyledNavLink = styled(NavLink)`
   margin-left: 1rem;
@@ -44,27 +51,74 @@ const StyledTitle = styled.h3`
   color: ${colors.tertiary};
   letter-spacing: 0.3rem;
   font-weight: bold;
-`
+`;
 
-const NavBar = () => {
+const StyledUser = styled(FaUserTie)`
+  font-size: 1.8rem;
+  color: ${colors.secondary};
+`;
+
+const StyledDropdownToggle = styled(DropdownToggle)`
+  outline: 0;
+  &:hover {
+    border-radius: 1rem;
+    background-color: ${colors.primary};
+  }
+`;
+
+const StyledLogout = styled(DropdownItem)`
+  justify-content: center;
+  &:hover {
+    color: ${colors.alternate};
+  }
+`;
+
+const NavBar = ({ authenticated }) => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   return (
     <div>
       <Navbar light expand="md">
         <Container>
-          <NavbarBrand href="/"><StyledTitle>Block-Cert</StyledTitle></NavbarBrand>
+          <NavbarBrand href="/">
+            <StyledTitle>Block-Cert</StyledTitle>
+          </NavbarBrand>
           <NavbarToggler onClick={toggleNavbar} />
           <Collapse isOpen={!collapsed} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <StyledNavLink to="/login">Login</StyledNavLink>
-              </NavItem>
-              <NavItem>
-                <StyledNavLink to="/signup">Sign Up</StyledNavLink>
-              </NavItem>
-            </Nav>
+            {!authenticated && (
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <StyledNavLink to="/login">Login</StyledNavLink>
+                </NavItem>
+                <NavItem>
+                  <StyledNavLink to="/signup">Sign Up</StyledNavLink>
+                </NavItem>
+              </Nav>
+            )}
+            {authenticated && (
+              <Nav className="ml-auto" navbar>
+                <Dropdown isOpen={dropdownOpen} toggle={toggle} nav inNavbar>
+                  <StyledDropdownToggle
+                    onMouseOver={() => setDropdownOpen(true)}
+                    nav
+                    caret
+                  >
+                    <StyledUser />
+                  </StyledDropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem header>Fenty Fantasia</DropdownItem>
+                    <DropdownItem divider />
+                    <StyledLogout>
+                      <FiLogOut /> Log out{" "}
+                    </StyledLogout>
+                  </DropdownMenu>
+                </Dropdown>
+              </Nav>
+            )}
           </Collapse>
         </Container>
       </Navbar>
@@ -72,4 +126,8 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+const mapStateToProps = ({ user }) => ({
+  authenticated: user.authenticated,
+});
+
+export default connect(mapStateToProps, {})(NavBar);

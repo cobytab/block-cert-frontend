@@ -1,5 +1,5 @@
 const initialState = {
-  name: "Block Cert",
+  authenticated: false
 };
 
 const userReducer = (state = initialState, action) => {

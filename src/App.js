@@ -6,6 +6,8 @@ import Homepage from "./components/Homepage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Footer from "./components/Footer";
+import Dashboard from './components/Dashboard';
+import AuthRoute from './components/AuthRoute';
 
 import { Switch, Route } from "react-router-dom";
 
@@ -20,6 +22,9 @@ function App() {
         <Route path="/signup">
           <Signup />
         </Route>
+        <AuthRoute path="/dashboard">
+          <Dashboard />
+        </AuthRoute>
         <Route path="/">
           <Homepage />
         </Route>

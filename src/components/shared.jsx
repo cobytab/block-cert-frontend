@@ -2,6 +2,10 @@ import { Container } from "reactstrap";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+// redux
+import { connect } from 'react-redux'
+
+
 export const colors = {
   primary: "#fff",
   light: "#EDF2F7",
@@ -13,7 +17,6 @@ export const colors = {
 export const StyledContainer = styled(Container)`
   background-color: ${colors.primary};
   border-radius: 0.5rem;
-  
 `;
 
 export const Welcome = styled.p`
@@ -61,6 +64,10 @@ export const StyledInput = styled.input`
   padding-right: 3rem;
   height: 3.5rem;
   font-size: 1.3rem;
+
+  &:focus {
+    border: 0.1rem solid ${colors.secondary};
+  }
 `;
 
 export const Label = styled.p`
