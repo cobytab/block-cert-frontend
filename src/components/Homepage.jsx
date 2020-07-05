@@ -77,7 +77,7 @@ const Homepage = () => {
           <Welcome>
             We provide you with an efficient and secured way of storing and
             validating college certificates.
-            <StyledButton to="/start">Get Started</StyledButton>
+            <StyledButton to="/login">Get Started</StyledButton>
           </Welcome>
         </Col>
         <Col md="6">

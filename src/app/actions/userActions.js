@@ -1,7 +1,7 @@
-export const testAction = () => (dispatch) => {
-  alert("Test action running");
-//   dispatch({
-//     type: "TEST",
-//     payload: "Hello",
-//   });
+import { LOG_OUT } from "../types";
+
+export const logoutUser = () => (dispatch) => {
+  dispatch({
+    type: LOG_OUT,
+  });
 };

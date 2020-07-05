@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+import { logoutUser } from "./../app/actions/userActions";
+
 // UI
 import {
   Container,
@@ -21,7 +23,7 @@ import { FaUserTie } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 
 // React router
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import { colors } from "./shared";
 
@@ -68,12 +70,17 @@ const StyledDropdownToggle = styled(DropdownToggle)`
 
 const StyledLogout = styled(DropdownItem)`
   justify-content: center;
+
   &:hover {
     color: ${colors.alternate};
   }
+  &:active {
+    color: ${colors.primary};
+    background-color: ${colors.alternate};
+  }
 `;
 
-const NavBar = ({ authenticated }) => {
+const NavBar = ({ authenticated, logoutUser }) => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
 
@@ -112,8 +119,8 @@ const NavBar = ({ authenticated }) => {
                   <DropdownMenu right>
                     <DropdownItem header>Fenty Fantasia</DropdownItem>
                     <DropdownItem divider />
-                    <StyledLogout>
-                      <FiLogOut /> Log out{" "}
+                    <StyledLogout onClick={logoutUser}>
+                      <FiLogOut /> Log out
                     </StyledLogout>
                   </DropdownMenu>
                 </Dropdown>
@@ -130,4 +137,4 @@ const mapStateToProps = ({ user }) => ({
   authenticated: user.authenticated,
 });
 
-export default connect(mapStateToProps, {})(NavBar);
+export default connect(mapStateToProps, { logoutUser })(NavBar);

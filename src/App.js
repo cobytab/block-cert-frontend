@@ -7,7 +7,11 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Footer from "./components/Footer";
 import Dashboard from './components/Dashboard';
+
+// Custom routes
 import AuthRoute from './components/AuthRoute';
+import BasicRoute from './components/BasicRoute';
+
 
 import { Switch, Route } from "react-router-dom";
 
@@ -16,12 +20,12 @@ function App() {
     <div className="App">
       <NavBar />
       <Switch>
-        <Route path="/login">
+        <BasicRoute path="/login">
           <Login />
-        </Route>
-        <Route path="/signup">
+        </BasicRoute>
+        <BasicRoute path="/signup">
           <Signup />
-        </Route>
+        </BasicRoute>
         <AuthRoute path="/dashboard">
           <Dashboard />
         </AuthRoute>

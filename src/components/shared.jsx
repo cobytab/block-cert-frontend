@@ -2,16 +2,13 @@ import { Container } from "reactstrap";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// redux
-import { connect } from 'react-redux'
-
-
 export const colors = {
   primary: "#fff",
   light: "#EDF2F7",
   secondary: "#6a7edf",
   tertiary: "#3c3f78",
   alternate: "#f27389",
+  dark: "#111"
 };
 
 export const StyledContainer = styled(Container)`
