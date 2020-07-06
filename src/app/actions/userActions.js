@@ -37,6 +37,27 @@ export const loginUser = (credentials, history) => {
   };
 };
 
+export const signupUser = (credentials, history) => {
+  return () => {
+    // Call api for feedback
+
+    const userToken = "testtoken";
+    sessionService
+      .saveSession({ userToken })
+      .then(() => {
+        sessionService
+          .saveUser({ ...credentials })
+          .then(() => {
+            history.push("/dashboard");
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export const verifyData = (details, history) => (dispatch) => {
   dispatch(setLoading(true));
 

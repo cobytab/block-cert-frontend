@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import { useHistory } from 'react-router-dom';
 
 // Styled Components
+import styled from "styled-components";
 import {
   StyledContainer,
   Welcome,
@@ -29,15 +30,21 @@ import {
   FiKey,
 } from "react-icons/fi";
 
-const Signup = () => {
+// Redux
+import { connect } from 'react-redux'
+import { signupUser } from './../app/actions/userActions';
+
+const Signup = ({signupUser}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const history = useHistory();
+
   const handleSubmit = (e) => {
-    if (email === "" || password === "") {
+    if (email === "" || password === "" || rePassword === "") {
       setMessage("Please fill in all fields!");
     } else if (!validateEmail(email)) {
       setMessage("Please enter a valid email!");
@@ -47,7 +54,7 @@ const Signup = () => {
       setMessage("Passwords donot match!");
     } else {
       // Go to server.
-      //  signupUser({ email: email.trim(), password: password.trim() });
+       signupUser({ email: email.trim(), password: password.trim() }, history);
     }
 
     e.preventDefault();
@@ -133,4 +140,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default connect(null, {signupUser})(Signup);
