@@ -1,4 +1,4 @@
-import { Container } from "reactstrap";
+import { Container, Spinner } from "reactstrap";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ export const colors = {
   tertiary: "#3c3f78",
   alternate: "#f27389",
   dark: "#111",
+  green: "#3CB371"
 };
 
 export const StyledContainer = styled(Container)`
@@ -129,4 +130,38 @@ export const Message = styled.p`
   font-size: 0.9rem;
   color: ${colors.alternate};
   margin-top: 2rem;
+`;
+
+// Dashboard
+
+export const PortalImage = styled.div`
+  background-image: url(${props => props.image});
+  height: calc(100vh - 85px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+`;
+
+export const StyledHead = styled.p`
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: ${colors.secondary};
+`;
+
+export const StyledSpinner = styled(Spinner)`
+  margin-left: 1rem;
+`;
+
+export const StyledSubmitLoading = styled.button`
+  border-radius: 1rem;
+  height: 3.5rem;
+  font-size: 1.2rem;
+  margin: 1rem auto;
+  width: 80%;
+  border: 0.1rem solid ${colors.secondary};
+  transition: all 0.3s ease-out;
+  background-color: ${colors.secondary};
+  text-decoration: none;
+  color: ${colors.primary};
+  opacity: 0.7;
 `;

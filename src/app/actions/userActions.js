@@ -1,4 +1,9 @@
-import { VERIFY_DATA, SET_LOADING, SET_MESSAGE } from "../types";
+import {
+  VERIFY_DATA,
+  SET_LOADING,
+  SET_MESSAGE,
+  RESET_VALIDITY,
+} from "../types";
 import { sessionService } from "redux-react-session";
 
 export const logoutUser = (history) => {
@@ -32,14 +37,22 @@ export const loginUser = (credentials, history) => {
   };
 };
 
-export const verifyData = (details) => (dispatch) => {
+export const verifyData = (details, history) => (dispatch) => {
   dispatch(setLoading(true));
+
+  // Do some magic with the details
   dispatch({
     type: VERIFY_DATA,
-    payload: details,
+    payload: "valid",
   });
+  history.push("/dashboard");
   dispatch(setLoading(false));
+};
 
+export const resetValidity = () => {
+  return {
+    type: RESET_VALIDITY,
+  };
 };
 
 export const setLoading = (status) => {
