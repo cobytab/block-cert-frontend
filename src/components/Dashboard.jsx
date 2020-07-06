@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+
 // Reactstrap
 import { Row, Col } from "reactstrap";
 
@@ -9,7 +9,16 @@ import { FiUser } from "react-icons/fi";
 import { IoMdSchool } from "react-icons/io";
 import { TiBusinessCard } from "react-icons/ti";
 
+// redux
+import { connect } from "react-redux";
+import { verifyData } from "./../app/actions/userActions";
+
+// components
+import portalImg from "./../assets/portalfront.jpg";
+import DashboardResult from "./DashboardResult";
+
 // Styled components
+import styled from "styled-components";
 import {
   StyledContainer,
   Welcome,
@@ -25,11 +34,6 @@ import {
   StyledSubmitLoading,
   StyledSpinner,
 } from "./shared";
-import { connect } from "react-redux";
-import { verifyData } from "./../app/actions/userActions";
-import portalImg from "./../assets/portalfront.jpg";
-import DashboardResult from "./DashboardResult";
-
 const StyledInfo = styled.p`
   font-size: 1.2rem;
 `;
@@ -66,9 +70,9 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
     setTimeout(() => setMessage(""), 3000);
   };
 
-  const validateFullName = (indexNo) => {
+  const validateFullName = (fullName) => {
     let re = /^[A-Za-z ]*$/;
-    return re.test(indexNo);
+    return re.test(fullName);
   };
 
   const validateIndexNo = (indexNo) => {

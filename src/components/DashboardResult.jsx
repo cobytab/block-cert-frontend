@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+// redux
 import { connect } from "react-redux";
 import { resetValidity } from './../app/actions/userActions';
 

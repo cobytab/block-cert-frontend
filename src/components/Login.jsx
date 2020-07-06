@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 // Reactstrap
 import { Row, Col } from "reactstrap";
 
 // React icons
-import { FiUser, FiLock, FiLogIn, FiEye, FiEyeOff } from "react-icons/fi";
+import { FiMail, FiLock, FiLogIn, FiEye, FiEyeOff } from "react-icons/fi";
 
 // Styled components
 import {
   StyledContainer,
   Welcome,
-  colors,
   StyledInputField,
   Label,
   StyledSubmit,
@@ -74,9 +72,10 @@ const Login = ({ loginUser }) => {
                   onChange={(value) => setEmail(value.target.value)}
                   type="text"
                   name="email"
+                  placeholder="e.g. user@example.com"
                 />
                 <StyledIcon postion="left">
-                  <FiUser />
+                  <FiMail />
                 </StyledIcon>
               </StyledInputField>
               <StyledInputField>
@@ -85,6 +84,7 @@ const Login = ({ loginUser }) => {
                   onChange={(value) => setPassword(value.target.value)}
                   type={showPassword ? "text" : "password"}
                   name="password"
+                  placeholder="* * * * * * * *"
                 />
                 <StyledIcon postion="left">
                   <FiLock />

@@ -60,10 +60,11 @@ export const StyledInput = styled.input`
   background-color: ${colors.light};
   border-radius: 1rem;
   width: 100%;
-  padding-left: 3rem;
+  padding-left: 3.5rem;
   padding-right: 3rem;
   height: 3.5rem;
   font-size: 1rem;
+  letter-spacing: 0.1rem;
 
   &:focus {
     border: 0.1rem solid ${colors.secondary};
@@ -75,10 +76,11 @@ export const StyledSelect = styled.select`
   outline: 0;
   border-radius: 1rem;
   width: 100%;
-  padding-left: 3rem;
+  padding-left: 3.5rem;
   padding-right: 3rem;
   height: 3.5rem;
   font-size: 1rem;
+  letter-spacing: 0.1rem;
   appearance: none;
   background: url(${caret}) 96% / 5% no-repeat ${colors.light};
 
@@ -112,7 +114,7 @@ export const StyledSubmit = styled.button`
 
 export const StyledIcon = styled.p`
   position: absolute;
-  top: 2.1rem;
+  top: 2.2rem;
   ${(props) => props.postion}: 0.5rem;
   font-size: 1.8rem;
 `;
