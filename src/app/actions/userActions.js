@@ -5,6 +5,7 @@ import {
   RESET_VALIDITY,
 } from "../types";
 import { sessionService } from "redux-react-session";
+import axios from "axios";
 
 export const logoutUser = (history) => {
   return () => {
@@ -16,25 +17,43 @@ export const logoutUser = (history) => {
   };
 };
 
-export const loginUser = (credentials, history) => {
-  return () => {
-    // Call api for feedback
+export const loginUser = (credentials, history) => (dispatch) => {
+  axios
+    .post(
+      "https://school-work-project.herokuapp.com/api/v1/User/login",
+      credentials,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((response) => {
+      const { success, message, user } = response.data;
+      if (!success) {
+        setMessage(message);
+      } else {
+        const { token } = user;
 
-    const userToken = "testtoken";
-    sessionService
-      .saveSession({ userToken })
-      .then(() => {
         sessionService
-          .saveUser({ ...credentials })
+          .saveSession(token)
           .then(() => {
-            history.push("/dashboard");
+            sessionService
+              .saveUser({ ...user })
+              .then(() => {
+                history.push("/dashboard");
+              })
+              .catch((err) => console.log(err));
           })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    })
+    .catch((err) => {
+      setMessage("An error occurred while logging in.");
+      console.log(err);
+    });
 };
 
 export const signupUser = (credentials, history) => {

@@ -20,17 +20,18 @@ import {
   Message,
 } from "./shared";
 import { connect } from "react-redux";
-import { loginUser } from "./../app/actions/userActions";
+import { loginUser, setMessage } from "./../app/actions/userActions";
 
-const Login = ({ loginUser }) => {
+const Login = ({ loginUser, setMessage, message }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     if (email === "" || password === "") {
       setMessage("Please fill in all fields!");
     } else if (!validateEmail(email)) {
@@ -40,7 +41,6 @@ const Login = ({ loginUser }) => {
       loginUser({ email: email.trim(), password: password.trim() }, history);
     }
 
-    e.preventDefault();
     setTimeout(() => setMessage(""), 3000);
   };
 
@@ -65,7 +65,7 @@ const Login = ({ loginUser }) => {
         </Col>
         <Col md="6">
           <Welcome>
-            <form>
+            <form onSubmit={handleSubmit}>
               <StyledInputField>
                 <Label>Email</Label>
                 <StyledInput
@@ -98,9 +98,7 @@ const Login = ({ loginUser }) => {
                 </StyledIcon>
               </StyledInputField>
               {message && <Message>{message}</Message>}
-              <StyledSubmit type="submit" onClick={(e) => handleSubmit(e)}>
-                Proceed
-              </StyledSubmit>
+              <StyledSubmit type="submit">Proceed</StyledSubmit>
             </form>
           </Welcome>
         </Col>
@@ -109,4 +107,8 @@ const Login = ({ loginUser }) => {
   );
 };
 
-export default connect(null, { loginUser })(Login);
+const mapStateToProps = ({user}) => ({
+  message: user.message
+})
+
+export default connect(mapStateToProps, { loginUser, setMessage })(Login);

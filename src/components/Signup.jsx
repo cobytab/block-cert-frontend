@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import {
   StyledContainer,
-  Welcome,
   StyledInputField,
   Label,
   StyledSubmit,
@@ -33,7 +32,7 @@ import {
 
 // Redux
 import { connect } from "react-redux";
-import { signupUser } from "./../app/actions/userActions";
+import { signupUser, setMessage } from "./../app/actions/userActions";
 
 const MinWelcome = styled.div`
   min-height: calc(100vh - 85px) !important;
@@ -44,13 +43,12 @@ const MinWelcome = styled.div`
   font-size: 2.3rem;
 `;
 
-const Signup = ({ signupUser }) => {
+const Signup = ({ signupUser, setMessage, message }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-  const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const history = useHistory();
@@ -207,4 +205,8 @@ const Signup = ({ signupUser }) => {
   );
 };
 
-export default connect(null, { signupUser })(Signup);
+const mapStateToProps = ({user}) => ({
+  message: user.message
+})
+
+export default connect(mapStateToProps, { signupUser, setMessage })(Signup);
