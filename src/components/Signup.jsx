@@ -74,12 +74,21 @@ const Signup = ({ signupUser, setMessage, message }) => {
       setMessage("Passwords donot match!");
     } else {
       // Go to server.
+
+      const names = fullName.trim().split(" ");
+      const fname = names[0];
+      let lname = "";
+      for (let i = 1; i < names.length; i++) {
+        lname += `${names[i]} `;
+      }
+
       signupUser(
         {
           email: email.trim(),
           password: password.trim(),
-          fullName: fullName.trim(),
-          phoneNumber: phoneNumber.trim(),
+          fname: fname.trim(),
+          lname: lname.trim(),
+          phone: phoneNumber.trim(),
         },
         history
       );
@@ -205,8 +214,8 @@ const Signup = ({ signupUser, setMessage, message }) => {
   );
 };
 
-const mapStateToProps = ({user}) => ({
-  message: user.message
-})
+const mapStateToProps = ({ user }) => ({
+  message: user.message,
+});
 
 export default connect(mapStateToProps, { signupUser, setMessage })(Signup);

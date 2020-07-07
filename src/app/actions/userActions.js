@@ -7,16 +7,6 @@ import {
 import { sessionService } from "redux-react-session";
 import axios from "axios";
 
-export const logoutUser = (history) => {
-  return () => {
-    // Call api here
-
-    sessionService.deleteSession();
-    sessionService.deleteUser();
-    history.push("/login");
-  };
-};
-
 export const loginUser = (credentials, history) => (dispatch) => {
   axios
     .post(
@@ -31,7 +21,7 @@ export const loginUser = (credentials, history) => (dispatch) => {
     .then((response) => {
       const { success, message, user } = response.data;
       if (!success) {
-        setMessage(message);
+        dispatch(setMessage(message.toLowerCase()));
       } else {
         const { token } = user;
 
@@ -51,29 +41,42 @@ export const loginUser = (credentials, history) => (dispatch) => {
       }
     })
     .catch((err) => {
-      setMessage("An error occurred while logging in.");
+      dispatch(setMessage("An error occurred while logging in."));
       console.log(err);
     });
 };
 
-export const signupUser = (credentials, history) => {
-  return () => {
-    // Call api for feedback
+export const signupUser = (credentials, history) => (dispatch) => {
+  axios
+    .post(
+      "https://school-work-project.herokuapp.com/api/v1/user/register",
+      credentials,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((response) => {
+      const { success, message } = response.data;
+      if (!success) {
+        dispatch(setMessage(message.toLowerCase()));
+      } else {
+        const { email, password } = credentials;
+        dispatch(loginUser({ email, password }, history));
+      }
+    })
+    .catch((err) => {
+      dispatch(setMessage("An error occurred while signing up."));
+      console.log(err);
+    });
+};
 
-    const userToken = "testtoken";
-    sessionService
-      .saveSession({ userToken })
-      .then(() => {
-        sessionService
-          .saveUser({ ...credentials })
-          .then(() => {
-            history.push("/dashboard");
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+export const logoutUser = (history) => {
+  return () => {
+    sessionService.deleteSession();
+    sessionService.deleteUser();
+    history.push("/login");
   };
 };
 
