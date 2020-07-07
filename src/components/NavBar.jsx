@@ -100,11 +100,9 @@ const NavBar = ({ authenticated, logoutUser, user }) => {
     <div>
       <Navbar light expand="md">
         <Container>
-          {/* <NavbarBrand href="/"> */}
           <StyledTitle href="/">
             <h3>Block-Cert</h3>
           </StyledTitle>
-          {/* </NavbarBrand> */}
           <NavbarToggler onClick={toggleNavbar} />
           <Collapse isOpen={!collapsed} navbar>
             {!authenticated && (
