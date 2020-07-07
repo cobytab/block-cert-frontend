@@ -13,6 +13,8 @@ import {
   StyledInfo,
   StyledInput,
   Message,
+  StyledSubmitLoading,
+  StyledSpinner,
 } from "./shared";
 
 // Reactstrap
@@ -43,7 +45,7 @@ const MinWelcome = styled.div`
   font-size: 2.3rem;
 `;
 
-const Signup = ({ signupUser, setMessage, message }) => {
+const Signup = ({ signupUser, setMessage, message, appLoading }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -203,9 +205,18 @@ const Signup = ({ signupUser, setMessage, message }) => {
                 </StyledIcon>
               </StyledInputField>
               {message && <Message>{message}</Message>}
-              <StyledSubmit type="submit" onClick={(e) => handleSubmit(e)}>
+              {!appLoading && <StyledSubmit type="submit" onClick={(e) => handleSubmit(e)}>
                 Register
-              </StyledSubmit>
+              </StyledSubmit>}
+              {appLoading && (
+                  <StyledSubmitLoading disabled type="submit">
+                    Registering...
+                    <StyledSpinner
+                      style={{ width: "1.6rem", height: "1.6rem" }}
+                      type="grow"
+                    />
+                  </StyledSubmitLoading>
+                )}
             </form>
           </MinWelcome>
         </Col>
@@ -216,6 +227,7 @@ const Signup = ({ signupUser, setMessage, message }) => {
 
 const mapStateToProps = ({ user }) => ({
   message: user.message,
+  appLoading: user.appLoading
 });
 
 export default connect(mapStateToProps, { signupUser, setMessage })(Signup);

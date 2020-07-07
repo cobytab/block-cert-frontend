@@ -8,6 +8,7 @@ import { sessionService } from "redux-react-session";
 import axios from "axios";
 
 export const loginUser = (credentials, history) => (dispatch) => {
+  dispatch(setLoading(true));
   axios
     .post(
       "https://school-work-project.herokuapp.com/api/v1/User/login",
@@ -22,6 +23,7 @@ export const loginUser = (credentials, history) => (dispatch) => {
       const { success, message, user } = response.data;
       if (!success) {
         dispatch(setMessage(message.toLowerCase()));
+        dispatch(setLoading(false));
       } else {
         const { token } = user;
 
@@ -32,21 +34,35 @@ export const loginUser = (credentials, history) => (dispatch) => {
               .saveUser({ ...user })
               .then(() => {
                 history.push("/dashboard");
+                dispatch(setLoading(false));
               })
-              .catch((err) => console.log(err));
+              .catch((err) => {
+                dispatch(
+                  setMessage("An error occurred while saving user session.")
+                );
+                console.log(err);
+                dispatch(setLoading(false));
+              });
           })
           .catch((err) => {
+            dispatch(
+              setMessage("An error occurred while saving login session.")
+            );
             console.log(err);
+            dispatch(setLoading(false));
           });
       }
     })
     .catch((err) => {
       dispatch(setMessage("An error occurred while logging in."));
+      dispatch(setLoading(false));
       console.log(err);
     });
 };
 
 export const signupUser = (credentials, history) => (dispatch) => {
+  dispatch(setLoading(true));
+
   axios
     .post(
       "https://school-work-project.herokuapp.com/api/v1/user/register",
@@ -61,6 +77,7 @@ export const signupUser = (credentials, history) => (dispatch) => {
       const { success, message } = response.data;
       if (!success) {
         dispatch(setMessage(message.toLowerCase()));
+        dispatch(setLoading(false));
       } else {
         const { email, password } = credentials;
         dispatch(loginUser({ email, password }, history));
@@ -69,6 +86,7 @@ export const signupUser = (credentials, history) => (dispatch) => {
     .catch((err) => {
       dispatch(setMessage("An error occurred while signing up."));
       console.log(err);
+      dispatch(setLoading(false));
     });
 };
 

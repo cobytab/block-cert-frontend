@@ -18,11 +18,13 @@ import {
   StyledInfo,
   StyledInput,
   Message,
+  StyledSubmitLoading,
+  StyledSpinner,
 } from "./shared";
 import { connect } from "react-redux";
 import { loginUser, setMessage } from "./../app/actions/userActions";
 
-const Login = ({ loginUser, setMessage, message }) => {
+const Login = ({ loginUser, setMessage, message, appLoading }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -98,7 +100,19 @@ const Login = ({ loginUser, setMessage, message }) => {
                 </StyledIcon>
               </StyledInputField>
               {message && <Message>{message}</Message>}
-              <StyledSubmit type="submit">Proceed</StyledSubmit>
+              {appLoading && (
+                <StyledSubmitLoading disabled type="submit">
+                  Logging in...
+                  <StyledSpinner
+                    style={{ width: "1.6rem", height: "1.6rem" }}
+                    type="grow"
+                  />
+                </StyledSubmitLoading>
+              )}
+              {!appLoading && (
+                <StyledSubmit type="submit">Proceed</StyledSubmit>
+              )}
+              
             </form>
           </Welcome>
         </Col>
@@ -107,8 +121,9 @@ const Login = ({ loginUser, setMessage, message }) => {
   );
 };
 
-const mapStateToProps = ({user}) => ({
-  message: user.message
-})
+const mapStateToProps = ({ user }) => ({
+  message: user.message,
+  appLoading: user.appLoading,
+});
 
 export default connect(mapStateToProps, { loginUser, setMessage })(Login);
