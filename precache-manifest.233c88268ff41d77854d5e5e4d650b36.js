@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7fe07ffeb3182cef91f0aff6879ebe49",
+    "revision": "450aed5c337719b474b95518ef585d4a",
     "url": "/final-year-frontend/index.html"
   },
   {
-    "revision": "d6f9ae74cf785c3bf829",
+    "revision": "8758ee0b330ed453cad0",
     "url": "/final-year-frontend/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "5e9ee25087910e457e87",
+    "revision": "89c117c43e9230305efb",
     "url": "/final-year-frontend/static/css/main.03d440f1.chunk.css"
   },
   {
-    "revision": "d6f9ae74cf785c3bf829",
-    "url": "/final-year-frontend/static/js/2.7f71288e.chunk.js"
+    "revision": "8758ee0b330ed453cad0",
+    "url": "/final-year-frontend/static/js/2.08ad68d5.chunk.js"
   },
   {
     "revision": "242993bfc9f71c9c866d8da8b903d7f7",
-    "url": "/final-year-frontend/static/js/2.7f71288e.chunk.js.LICENSE.txt"
+    "url": "/final-year-frontend/static/js/2.08ad68d5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5e9ee25087910e457e87",
-    "url": "/final-year-frontend/static/js/main.c33c4b41.chunk.js"
+    "revision": "89c117c43e9230305efb",
+    "url": "/final-year-frontend/static/js/main.9de1afe7.chunk.js"
   },
   {
     "revision": "cab4b3b1a8c0ddd0fb09",
