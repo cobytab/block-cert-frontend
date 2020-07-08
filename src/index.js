@@ -8,7 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // React router
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // Redux
 import { Provider } from "react-redux";
