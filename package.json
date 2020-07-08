@@ -28,7 +28,6 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build && gh-pages -d build"
   },
-  "homepage": "https://terracobynnha.github.io/block-cert-frontend/",
   "eslintConfig": {
     "extends": "react-app"
   },
