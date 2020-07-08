@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b12087a758eb6a05e2d32f19972de984",
+    "revision": "aca08d898e24b12c58d8bfea9f9970ea",
     "url": "/block-cert-frontend/index.html"
   },
   {
-    "revision": "87dd7fcd4580dc3000bd",
+    "revision": "de727c8c93897880df6f",
     "url": "/block-cert-frontend/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "00e8af8f7d8146184812",
+    "revision": "476c89128a66923201b2",
     "url": "/block-cert-frontend/static/css/main.03d440f1.chunk.css"
   },
   {
-    "revision": "87dd7fcd4580dc3000bd",
-    "url": "/block-cert-frontend/static/js/2.dd9ed57e.chunk.js"
+    "revision": "de727c8c93897880df6f",
+    "url": "/block-cert-frontend/static/js/2.28010278.chunk.js"
   },
   {
     "revision": "242993bfc9f71c9c866d8da8b903d7f7",
-    "url": "/block-cert-frontend/static/js/2.dd9ed57e.chunk.js.LICENSE.txt"
+    "url": "/block-cert-frontend/static/js/2.28010278.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "00e8af8f7d8146184812",
-    "url": "/block-cert-frontend/static/js/main.d141bf43.chunk.js"
+    "revision": "476c89128a66923201b2",
+    "url": "/block-cert-frontend/static/js/main.a61ed65b.chunk.js"
   },
   {
     "revision": "225d20b2cb0b069f0b93",
