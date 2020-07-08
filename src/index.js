@@ -16,7 +16,7 @@ import Store from "./app/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Provider store={Store}>
         <App />
       </Provider>
