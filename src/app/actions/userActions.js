@@ -101,12 +101,78 @@ export const logoutUser = (history) => {
 export const verifyData = (details, history) => (dispatch) => {
   dispatch(setLoading(true));
 
-  // Do some magic with the details
-  const status = "valid";
+  const data = [
+    {
+      fullName: "Seth Whenton",
+      serialNo: "1234001",
+      institution: "University Of Ghana",
+      degree: "First Class Honours in Bsc. Computer Science",
+    },
+    {
+      fullName: "Enoch Omolere",
+      serialNo: "1234002",
+      institution: "University Of Ghana",
+      degree: "First Class Honours in Bsc. Computer Science",
+    },
+    {
+      fullName: "Isichei Phelim",
+      serialNo: "1234003",
+      institution: "University Of Ghana",
+      degree: "First Class Honours in Bsc. Computer Science",
+    },
+    {
+      fullName: "Godsgift Fredinard Doe",
+      serialNo: "1234004",
+      institution: "University Of Ghana",
+      degree: "First Class Honours in Bsc. Computer Science",
+    },
+    {
+      fullName: "Terra Baffoe Andoh",
+      serialNo: "1234005",
+      institution: "University Of Ghana",
+      degree: "First Class Honours in Bsc. Computer Science",
+    },
+    {
+      fullName: "Nunya Yao Klah",
+      serialNo: "1234006",
+      institution: "University Of Ghana",
+      degree: "First Class Honours in Bsc. Computer Science",
+    },
+    {
+      fullName: "Kelvin Boahene",
+      serialNo: "1234007",
+      institution: "University Of Ghana",
+      degree: "First Class Honours in Bsc. Computer Science",
+    },
+  ];
+
+  const { fullName, serialNo, institution } = details;
+
+
+  let status = "invalid";
+  let validData = {};
+
+  data.forEach((dataItem) => {
+    // console.log(dataItem);
+
+    if (
+      dataItem.fullName === fullName &&
+      dataItem.serialNo === serialNo &&
+      dataItem.institution === institution
+    ) {
+      alert("Inside");
+      status = "valid";
+      validData = { ...dataItem };
+      return;
+    }
+  });
 
   dispatch({
     type: VERIFY_DATA,
-    payload: status,
+    payload: {
+      status,
+      validData,
+    },
   });
   history.push("/dashboard");
   dispatch(setLoading(false));

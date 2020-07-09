@@ -74,8 +74,8 @@ const CertDetail = styled.p`
   color: ${colors.tertiary};
 `;
 
-const Dashboard = ({ verifyData, appLoading, validity }) => {
-  const [indexNo, setIndexNo] = useState("");
+const Dashboard = ({ verifyData, appLoading, validity, validData }) => {
+  const [serialNo, setSerialNo] = useState("");
   const [institution, setInstitution] = useState("");
   const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
@@ -83,9 +83,9 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
   const history = useHistory();
 
   const handleSubmit = (e) => {
-    if (indexNo === "" || institution === "" || fullName === "") {
+    if (serialNo === "" || institution === "" || fullName === "") {
       setMessage("Please fill in all fields!");
-    } else if (!validateIndexNo(indexNo)) {
+    } else if (!validateSerialNo(serialNo)) {
       setMessage("Please enter a valid index no!");
     } else if (!validateFullName(fullName)) {
       setMessage("Please enter a valid student full name!");
@@ -94,7 +94,7 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
     } else {
       verifyData(
         {
-          indexNo: indexNo.trim(),
+          serialNo: serialNo.trim(),
           institution: institution.trim(),
           fullName: fullName.trim(),
         },
@@ -111,9 +111,9 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
     return re.test(fullName);
   };
 
-  const validateIndexNo = (indexNo) => {
+  const validateSerialNo = (serialNo) => {
     let re = /[0-9]+/;
-    return re.test(indexNo);
+    return re.test(serialNo);
   };
 
   return (
@@ -123,19 +123,19 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
           {validity === "valid" ? (
             <Welcome>
               <StyledCert>
-                <CertTitle color={colors.dark}>University of Ghana</CertTitle>
+                <CertTitle color={colors.dark}>{validData.institution}</CertTitle>
                 <StyledDetail>
                   <CertHead>Serial Number</CertHead>
-                  <CertDetail>Enoch Omolere</CertDetail>
+                  <CertDetail>{validData.serialNo}</CertDetail>
                 </StyledDetail>
                 <StyledDetail>
                   <CertHead>Name</CertHead>
-                  <CertDetail>Enoch Omolere</CertDetail>
+                  <CertDetail>{validData.fullName}</CertDetail>
                 </StyledDetail>
                 <StyledDetail>
                   <CertHead>Degree</CertHead>
                   <CertDetail>
-                    First Class Honours in Bsc. Computer Science
+                    {validData.degree}
                   </CertDetail>
                 </StyledDetail>
               </StyledCert>
@@ -155,11 +155,11 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
             {!validity && (
               <form>
                 <StyledInputField>
-                  <Label>Student Index Number</Label>
+                  <Label>Certificate Serial Number</Label>
                   <StyledInput
-                    onChange={(value) => setIndexNo(value.target.value)}
+                    onChange={(value) => setSerialNo(value.target.value)}
                     type="text"
-                    name="indexNo"
+                    name="serialNo"
                   />
                   <StyledIcon postion="left">
                     <TiBusinessCard />
@@ -183,8 +183,8 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
                     onChange={(value) => setInstitution(value.target.value)}
                   >
                     <option></option>
-                    <option>University of Ghana</option>
-                    <option>University of Cape Coast</option>
+                    <option>University Of Ghana</option>
+                    <option>University Of Cape Coast</option>
                   </StyledSelect>
 
                   <StyledIcon postion="left">
@@ -222,6 +222,7 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
 const mapStateToProps = ({ user }) => ({
   appLoading: user.appLoading,
   validity: user.validity,
+  validData: user.validData
 });
 
 export default connect(mapStateToProps, { verifyData })(Dashboard);

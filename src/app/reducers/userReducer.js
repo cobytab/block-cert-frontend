@@ -9,15 +9,18 @@ const initialState = {
   appLoading: false,
   message: null,
   validity: null,
+  validData: [],
 };
 
 const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case VERIFY_DATA: {
+      const { validData, status } = payload;
       return {
         ...state,
-        validity: payload,
+        validity: status,
+        validData: validData,
       };
     }
     case RESET_VALIDITY: {
