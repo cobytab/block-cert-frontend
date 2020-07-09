@@ -33,9 +33,45 @@ import {
   StyledHead,
   StyledSubmitLoading,
   StyledSpinner,
+  colors,
 } from "./shared";
 const StyledInfo = styled.p`
   font-size: 1.2rem;
+`;
+
+const StyledCert = styled.div`
+  border-radius: 1rem;
+  border: 0.1rem solid ${colors.secondary};
+  box-shadow: ;
+  background-color: ${colors.light};
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+`;
+
+const StyledDetail = styled.div`
+  border-bottom: 0.1rem solid ${colors.primary};
+  padding: 1.4rem;
+`;
+
+const CertTitle = styled.p`
+  padding: 0.5rem;
+  margin-top: 0.8rem;
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: ${colors.secondary};
+`;
+
+const CertHead = styled.p`
+  font-size: 0.9rem;
+  padding: 0.1rem;
+  margin: 0rem;
+  color: ${colors.secondary};
+`;
+
+const CertDetail = styled.p`
+  font-size: 1.3rem;
+  margin: 0rem;
+  color: ${colors.tertiary};
 `;
 
 const Dashboard = ({ verifyData, appLoading, validity }) => {
@@ -84,13 +120,35 @@ const Dashboard = ({ verifyData, appLoading, validity }) => {
     <StyledContainer>
       <Row>
         <Col md="6">
-          <Welcome>
-            <PortalImage image={portalImg} />
-            <StyledHead> Welcome to the Block-Cert portal.</StyledHead>
-            <StyledInfo>
-              Enter the details of the certificate you want to verify.
-            </StyledInfo>
-          </Welcome>
+          {validity === "valid" ? (
+            <Welcome>
+              <StyledCert>
+                <CertTitle color={colors.dark}>University of Ghana</CertTitle>
+                <StyledDetail>
+                  <CertHead>Serial Number</CertHead>
+                  <CertDetail>Enoch Omolere</CertDetail>
+                </StyledDetail>
+                <StyledDetail>
+                  <CertHead>Name</CertHead>
+                  <CertDetail>Enoch Omolere</CertDetail>
+                </StyledDetail>
+                <StyledDetail>
+                  <CertHead>Degree</CertHead>
+                  <CertDetail>
+                    First Class Honours in Bsc. Computer Science
+                  </CertDetail>
+                </StyledDetail>
+              </StyledCert>
+            </Welcome>
+          ) : (
+            <Welcome>
+              <PortalImage image={portalImg} />
+              <StyledHead> Welcome to the Block-Cert portal.</StyledHead>
+              <StyledInfo>
+                Enter the details of the certificate you want to verify.
+              </StyledInfo>
+            </Welcome>
+          )}
         </Col>
         <Col md="6">
           <Welcome>

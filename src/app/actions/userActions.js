@@ -102,9 +102,11 @@ export const verifyData = (details, history) => (dispatch) => {
   dispatch(setLoading(true));
 
   // Do some magic with the details
+  const status = "valid";
+
   dispatch({
     type: VERIFY_DATA,
-    payload: "valid",
+    payload: status,
   });
   history.push("/dashboard");
   dispatch(setLoading(false));

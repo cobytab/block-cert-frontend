@@ -11,7 +11,8 @@ export const colors = {
   tertiary: "#3c3f78",
   alternate: "#f27389",
   dark: "#111",
-  green: "#3CB371"
+  green: "#3CB371",
+  lightgreen: "#F0FFF4"
 };
 
 export const StyledContainer = styled(Container)`
