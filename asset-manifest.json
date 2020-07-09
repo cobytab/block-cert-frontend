@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/block-cert-frontend/static/css/main.03d440f1.chunk.css",
-    "main.js": "/block-cert-frontend/static/js/main.d141bf43.chunk.js",
-    "main.js.map": "/block-cert-frontend/static/js/main.d141bf43.chunk.js.map",
+    "main.js": "/block-cert-frontend/static/js/main.ee3dc8bb.chunk.js",
+    "main.js.map": "/block-cert-frontend/static/js/main.ee3dc8bb.chunk.js.map",
     "runtime-main.js": "/block-cert-frontend/static/js/runtime-main.7a269460.js",
     "runtime-main.js.map": "/block-cert-frontend/static/js/runtime-main.7a269460.js.map",
     "static/css/2.af3c1da9.chunk.css": "/block-cert-frontend/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.dd9ed57e.chunk.js": "/block-cert-frontend/static/js/2.dd9ed57e.chunk.js",
-    "static/js/2.dd9ed57e.chunk.js.map": "/block-cert-frontend/static/js/2.dd9ed57e.chunk.js.map",
+    "static/js/2.d178ccaa.chunk.js": "/block-cert-frontend/static/js/2.d178ccaa.chunk.js",
+    "static/js/2.d178ccaa.chunk.js.map": "/block-cert-frontend/static/js/2.d178ccaa.chunk.js.map",
     "index.html": "/block-cert-frontend/index.html",
-    "precache-manifest.f281802f2875793f1d39bea560ce09c3.js": "/block-cert-frontend/precache-manifest.f281802f2875793f1d39bea560ce09c3.js",
+    "precache-manifest.5035d38ada0b85173fed128cb876e11c.js": "/block-cert-frontend/precache-manifest.5035d38ada0b85173fed128cb876e11c.js",
     "service-worker.js": "/block-cert-frontend/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/block-cert-frontend/static/css/2.af3c1da9.chunk.css.map",
     "static/css/main.03d440f1.chunk.css.map": "/block-cert-frontend/static/css/main.03d440f1.chunk.css.map",
-    "static/js/2.dd9ed57e.chunk.js.LICENSE.txt": "/block-cert-frontend/static/js/2.dd9ed57e.chunk.js.LICENSE.txt",
+    "static/js/2.d178ccaa.chunk.js.LICENSE.txt": "/block-cert-frontend/static/js/2.d178ccaa.chunk.js.LICENSE.txt",
     "static/media/caret.png": "/block-cert-frontend/static/media/caret.8fe63375.png",
     "static/media/portalfront.jpg": "/block-cert-frontend/static/media/portalfront.5627f66c.jpg",
     "static/media/stage1.png": "/block-cert-frontend/static/media/stage1.2c319e59.png",
@@ -24,8 +24,8 @@
   "entrypoints": [
     "static/js/runtime-main.7a269460.js",
     "static/css/2.af3c1da9.chunk.css",
-    "static/js/2.dd9ed57e.chunk.js",
+    "static/js/2.d178ccaa.chunk.js",
     "static/css/main.03d440f1.chunk.css",
-    "static/js/main.d141bf43.chunk.js"
+    "static/js/main.ee3dc8bb.chunk.js"
   ]
 }
