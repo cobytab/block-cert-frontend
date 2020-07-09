@@ -148,19 +148,15 @@ export const verifyData = (details, history) => (dispatch) => {
 
   const { fullName, serialNo, institution } = details;
 
-
   let status = "invalid";
   let validData = {};
 
   data.forEach((dataItem) => {
-    // console.log(dataItem);
-
     if (
       dataItem.fullName === fullName &&
       dataItem.serialNo === serialNo &&
       dataItem.institution === institution
     ) {
-      alert("Inside");
       status = "valid";
       validData = { ...dataItem };
       return;
