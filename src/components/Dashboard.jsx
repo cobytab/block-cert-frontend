@@ -184,6 +184,7 @@ const Dashboard = ({ verifyData, appLoading, validity, validData }) => {
                     name="institution"
                     onChange={(value) => setInstitution(value.target.value)}
                   >
+                    <option></option>
                     <option>University Of Ghana</option>
                     <option>University Of Cape Coast</option>
                   </StyledSelect>
