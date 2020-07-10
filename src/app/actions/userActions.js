@@ -163,15 +163,17 @@ export const verifyData = (details, history) => (dispatch) => {
     }
   });
 
-  dispatch({
-    type: VERIFY_DATA,
-    payload: {
-      status,
-      validData,
-    },
-  });
-  history.push("/dashboard");
-  dispatch(setLoading(false));
+  setTimeout(() => {
+    dispatch({
+      type: VERIFY_DATA,
+      payload: {
+        status,
+        validData,
+      },
+    });
+    history.push("/dashboard");
+    dispatch(setLoading(false));
+  }, 2000);
 };
 
 export const resetValidity = () => {
