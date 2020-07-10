@@ -160,6 +160,7 @@ const Dashboard = ({ verifyData, appLoading, validity, validData }) => {
                     onChange={(value) => setSerialNo(value.target.value)}
                     type="text"
                     name="serialNo"
+                    placeholder="e.g. 1234000"
                   />
                   <StyledIcon postion="left">
                     <TiBusinessCard />
@@ -171,6 +172,7 @@ const Dashboard = ({ verifyData, appLoading, validity, validData }) => {
                     onChange={(value) => setFullName(value.target.value)}
                     type="text"
                     name="fullName"
+                    placeholder="e.g. firstname lastname"
                   />
                   <StyledIcon postion="left">
                     <FiUser />
@@ -182,7 +184,6 @@ const Dashboard = ({ verifyData, appLoading, validity, validData }) => {
                     name="institution"
                     onChange={(value) => setInstitution(value.target.value)}
                   >
-                    <option></option>
                     <option>University Of Ghana</option>
                     <option>University Of Cape Coast</option>
                   </StyledSelect>
